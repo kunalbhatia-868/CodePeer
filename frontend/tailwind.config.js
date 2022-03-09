@@ -7,6 +7,7 @@ module.exports = {
       fontFamily:{
         'fredoka':['Fredoka', 'sans-serif'],
         'nunito':['Nunito', 'sans-serif'],
+        'dosis':['Dosis', 'sans-serif'],
       }
     },
   },
