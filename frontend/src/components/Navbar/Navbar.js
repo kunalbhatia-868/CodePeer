@@ -4,7 +4,7 @@ import Avatar from "@mui/material/Avatar";
 
 function Navbar() {
 	return (
-		<nav className="flex justify-around items-center max-h-20 border-b-2 shadow-sm">
+		<nav className="flex justify-around items-center h-20 border-b-2 shadow-sm">
 			<div className="navbar-brand">
 				<img src="./assets/logo.svg" alt="" className="h-48 mt-6" />
 			</div>
