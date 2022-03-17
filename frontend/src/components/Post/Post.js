@@ -1,9 +1,16 @@
 import React from "react";
+import { useState } from "react";
+import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
+import CommentRoundedIcon from "@mui/icons-material/CommentRounded";
+import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
+import Comment from "./Comment";
 
 function Post() {
+	const [showComment, setShowComment] = useState(true);
+
 	return (
 		<div className="border-b-2 py-5 px-10 border-2 rounded-lg mx-4 my-5">
-			<div className="author flex my-3 flex-row flex-nowrap items-center">
+			<div className="author flex mx-3 my-3 flex-row flex-nowrap items-center cursor-pointer">
 				<div className="author-image w-[40px] min-w-[40px]">
 					<img
 						className="rounded-full"
@@ -23,7 +30,7 @@ function Post() {
 				</div>
 			</div>
 			<div className="content">
-				<div className="text font-dosis font-semibold text-black">
+				<div className="text font-dosis font-semibold text-black mx-3">
 					In boAt Lifestyle, we have a :- Chief Marketing Officer (CMO: Me) who
 					hasn’t studied marketing and a Chief Product Officer (CPO: Sameer) who
 					isn’t an engineer and a Chief Financial Officer (CFO: Ankur) who isn’t
@@ -34,10 +41,47 @@ function Post() {
 					<img
 						src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/330px-Image_created_with_a_mobile_phone.png"
 						alt=""
+						className=" w-[100%]"
 					/>
 				</div>
 			</div>
-			<div className="like-comment"></div>
+			<div className="like-comment flex justify-between mx-3 mt-5">
+				<div className="flex items-center hover:text-cyan-600 cursor-pointer">
+					<FavoriteBorderRoundedIcon sx={{ fontSize: 25 }} />
+					<div className="font-fredoka ml-2 text-lg font-medium text-slate-800">
+						Like
+					</div>
+				</div>
+				<div className="flex">
+					<div className="flex items-center hover:text-cyan-600 cursor-pointer">
+						<CommentRoundedIcon sx={{ fontSize: 25 }}></CommentRoundedIcon>
+						<div className="font-fredoka text-lg  pl-1 pr-3 font-medium text-slate-800 ">
+							Comment
+						</div>
+					</div>
+					<div
+						id="comments-dropdown"
+						className="cursor-pointer"
+						onClick={() => setShowComment(!showComment)}
+					>
+						<ArrowDropDownRoundedIcon sx={{ fontSize: 30 }} />
+					</div>
+				</div>
+			</div>
+			{showComment && (
+				<div id="comments-dropdown-list">
+					<hr className="mt-5" />
+					<div className="font-nunito  text-xl  font-bold my-3">
+						Latest Comments
+					</div>
+					<Comment />
+					<Comment />
+					<Comment />
+					<button className="font-nunito font-semibold text-blue-600">
+						More Comments
+					</button>
+				</div>
+			)}
 		</div>
 	);
 }
