@@ -6,6 +6,7 @@ import Login from "./pages/Login/Login";
 import Profile from "./pages/Profile/Profile";
 import Peoples from "./pages/Peoples/Peoples";
 import PostDetail from "./pages/PostDetail/PostDetail";
+import Notification from "./pages/Notification/Notification";
 
 function App() {
 	return (
@@ -18,6 +19,7 @@ function App() {
 					<Route exact path="/following" element={<Peoples />} />
 					<Route exact path="/login" element={<Login />} />
 					<Route exact path="/signup" element={<Signup />} />
+					<Route exact path="/notification" element={<Notification />} />
 				</Routes>
 			</BrowserRouter>
 		</div>

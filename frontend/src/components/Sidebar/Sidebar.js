@@ -16,7 +16,7 @@ function Sidebar() {
 			<SidebarLinks
 				text="Notifications"
 				Icon={NotificationsRoundedIcon}
-				link="homepage"
+				link="notification"
 			/>
 		</div>
 	);

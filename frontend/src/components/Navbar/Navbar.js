@@ -20,7 +20,7 @@ function Navbar() {
 				</a>
 			</div>
 			<div className="flex items-center">
-				<a href="/" className="mr-5">
+				<a href="/notification" className="mr-5">
 					<NotificationsActiveIcon />
 				</a>
 				<a href="/profile" className="">
