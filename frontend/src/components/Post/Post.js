@@ -6,8 +6,8 @@ import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
 import Comment from "./Comment";
 
 function Post() {
-	const [showComment, setShowComment] = useState(true);
-
+	const [showComment, setShowComment] = useState(false);
+	const [showCreateComment, setShowCreateComment] = useState(false);
 	return (
 		<div className="border-b-2 py-5 px-10 border-2 rounded-lg mx-4 my-5">
 			<div className="author flex mx-3 my-3 flex-row flex-nowrap items-center cursor-pointer">
@@ -55,7 +55,10 @@ function Post() {
 				<div className="flex">
 					<div className="flex items-center hover:text-cyan-600 cursor-pointer">
 						<CommentRoundedIcon sx={{ fontSize: 25 }}></CommentRoundedIcon>
-						<div className="font-fredoka text-lg  pl-1 pr-3 font-medium text-slate-800 ">
+						<div
+							className="font-fredoka text-lg  pl-1 pr-3 font-medium text-slate-800"
+							onClick={() => setShowCreateComment(!showCreateComment)}
+						>
 							Comment
 						</div>
 					</div>
@@ -68,6 +71,27 @@ function Post() {
 					</div>
 				</div>
 			</div>
+			{showCreateComment && (
+				<div>
+					<form
+						action=""
+						method="post"
+						className="flex flex-row h-10 my-3 justify-center"
+					>
+						<input
+							className="bg-gray-200 appearance-none border-2 border-gray-200 rounded py-2 px-4 text-gray-700 leading-6 focus:outline-none focus:bg-white focus:border-cyan-500 w-4/6 "
+							type="text"
+							placeholder="What's on you mind ?"
+						/>
+						<button
+							type="button"
+							className="ml-4 text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-800"
+						>
+							Post
+						</button>
+					</form>
+				</div>
+			)}
 			{showComment && (
 				<div id="comments-dropdown-list">
 					<hr className="mt-5" />
