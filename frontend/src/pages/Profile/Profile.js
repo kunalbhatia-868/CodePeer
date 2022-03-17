@@ -11,7 +11,7 @@ function Profile() {
 			<header>
 				<Navbar />
 			</header>
-			<main className="flex flex-row justify-evenly">
+			<main className="flex flex-row justify-center lg:mx-[5%] xl:mx-[10%] 2xl:mx-[15%]">
 				<Sidebar />
 				<ProfileDetail />
 				<Adbar />

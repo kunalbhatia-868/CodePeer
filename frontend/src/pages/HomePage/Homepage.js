@@ -4,6 +4,8 @@ import Adbar from "../../components/Adbar/Adbar";
 import Feed from "../../components/Feed/Feed";
 import Navbar from "../../components/Navbar/Navbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import CreatePost from "../../components/CreatePost/CreatePost";
+import "./Homepage.css";
 
 function Homepage() {
 	return (
@@ -12,9 +14,16 @@ function Homepage() {
 				<Navbar />
 			</header>
 			<main className="flex flex-row justify-center lg:mx-[5%] xl:mx-[10%] 2xl:mx-[15%]">
-				<Sidebar />
-				<Feed />
-				<Adbar />
+				<div className="flex flex-col mt-6  lg:w-1/6 mr-6">
+					<Sidebar />
+				</div>
+				<div className="w-2/3 md:w-1/2 block overflow-y-scroll h-screen noscroll">
+					<CreatePost />
+					<Feed />
+				</div>
+				<div className="hidden lg:inline w-1/4">
+					<Adbar />
+				</div>
 			</main>
 		</div>
 	);

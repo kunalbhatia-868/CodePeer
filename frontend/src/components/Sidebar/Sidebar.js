@@ -8,7 +8,7 @@ import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
 
 function Sidebar() {
 	return (
-		<div className="flex flex-col mt-6  lg:w-1/6">
+		<div>
 			<SidebarLinks text="Home" Icon={HomeRoundedIcon} link="homepage" />
 			<SidebarLinks text="Feed" Icon={FeedRoundedIcon} link="homepage" />
 			<SidebarLinks text="Profile" Icon={PersonRoundedIcon} link="profile" />

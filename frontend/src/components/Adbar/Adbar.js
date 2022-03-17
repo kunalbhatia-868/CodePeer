@@ -3,7 +3,7 @@ import FollowBlock from "../FollowBlock/FollowBlock";
 
 function Adbar() {
 	return (
-		<div className="hidden lg:inline w-1/4 ">
+		<div>
 			<FollowBlock />
 			<div className="text-sm text-center mx-5">
 				<a href="/homepage" className="hover:underline px-1 ">
