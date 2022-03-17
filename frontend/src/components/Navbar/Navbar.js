@@ -5,9 +5,9 @@ import Avatar from "@mui/material/Avatar";
 function Navbar() {
 	return (
 		<nav className="flex items-center justify-evenly mt-3 2xl:mx-8 mb-4">
-			<div className="navbar-brand">
+			<a className="navbar-brand" href="/">
 				<img src="./assets/logo.svg" alt="" className="h-12" />
-			</div>
+			</a>
 			<div className="font-nunito xs:text-xs sm:text-sm md:text-lg lg:text-xl text-slate-700 font-semibold">
 				<a className="mx-3 " href="/">
 					Feed
@@ -15,7 +15,7 @@ function Navbar() {
 				<a className="mx-3 " href="/">
 					Explore
 				</a>
-				<a className="mx-3 " href="/">
+				<a className="mx-3 " href="/following">
 					Friends
 				</a>
 			</div>
@@ -23,7 +23,7 @@ function Navbar() {
 				<a href="/" className="mr-5">
 					<NotificationsActiveIcon />
 				</a>
-				<a href="/" className="">
+				<a href="/profile" className="">
 					<Avatar alt="Cindy Baker" src="/./assets/avatar.jpg" />
 				</a>
 			</div>
