@@ -14,7 +14,9 @@ function Profile() {
 			<main className="flex flex-row justify-center lg:mx-[5%] xl:mx-[10%] 2xl:mx-[15%]">
 				<Sidebar />
 				<ProfileDetail />
-				<Adbar />
+				<div className="hidden lg:inline w-1/4">
+					<Adbar />
+				</div>
 			</main>
 		</div>
 	);
