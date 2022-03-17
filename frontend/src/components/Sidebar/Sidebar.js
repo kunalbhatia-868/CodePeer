@@ -9,7 +9,7 @@ import NotificationsRoundedIcon from "@mui/icons-material/NotificationsRounded";
 function Sidebar() {
 	return (
 		<div>
-			<SidebarLinks text="Feed" Icon={FeedRoundedIcon} link="" />
+			<SidebarLinks text="Feed" Icon={FeedRoundedIcon} link="feed" />
 			<SidebarLinks text="Friends" Icon={PeopleIcon} link="following" />
 			<SidebarLinks text="Profile" Icon={PersonRoundedIcon} link="profile" />
 			<SidebarLinks text="Messages" Icon={MessageRoundedIcon} link="homepage" />

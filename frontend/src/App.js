@@ -5,12 +5,15 @@ import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
 import Profile from "./pages/Profile/Profile";
 import Peoples from "./pages/Peoples/Peoples";
+import PostDetail from "./pages/PostDetail/PostDetail";
+
 function App() {
 	return (
 		<div className="app">
 			<BrowserRouter>
 				<Routes>
-					<Route exact path="/" element={<Homepage />} />
+					<Route exact path="/feed" element={<Homepage />} />
+					<Route exact path="/feed/:id" element={<PostDetail />} />
 					<Route exact path="/profile" element={<Profile />} />
 					<Route exact path="/following" element={<Peoples />} />
 					<Route exact path="/login" element={<Login />} />

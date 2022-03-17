@@ -5,11 +5,11 @@ import Avatar from "@mui/material/Avatar";
 function Navbar() {
 	return (
 		<nav className="flex items-center justify-evenly mt-3 2xl:mx-8 mb-4">
-			<a className="navbar-brand" href="/">
+			<a className="navbar-brand" href="/feed">
 				<img src="./assets/logo.svg" alt="" className="h-12" />
 			</a>
 			<div className="font-nunito xs:text-xs sm:text-sm md:text-lg lg:text-xl text-slate-700 font-semibold">
-				<a className="mx-3 " href="/">
+				<a className="mx-3 " href="/feed">
 					Feed
 				</a>
 				<a className="mx-3 " href="/">
