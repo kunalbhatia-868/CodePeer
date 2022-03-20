@@ -24,7 +24,7 @@ class UserProfile(AbstractUser):
     email=LowercaseEmailField(_('email address'),unique=True)
     bio=models.TextField(max_length=1000)
     github_id=models.CharField(max_length=50,blank=True)
-    image=models.ImageField(upload_to='uploads/')
+    image=models.ImageField(upload_to='uploads/',null=True,blank=True)
     created_on=models.DateTimeField(auto_now_add=True)
     updated_on=models.DateTimeField(auto_now=True)
     
@@ -35,3 +35,18 @@ class UserProfile(AbstractUser):
     
     def __str__(self):
         return self.email
+    
+    
+class Relationship(models.Model):
+    class RequestStatus(models.TextChoices):
+        sent='s',"SENT"
+        accepted='a',"ACCEPTED"
+    
+    sender=models.ForeignKey(UserProfile,on_delete=models.CASCADE,related_name="sender")
+    reciever=models.ForeignKey(UserProfile,on_delete=models.CASCADE,related_name="reciever")
+    status=models.CharField(max_length=1,choices=RequestStatus.choices,default=RequestStatus.sent)
+    created_on=models.DateTimeField(auto_now_add=True)
+    updated_on=models.DateTimeField(auto_now=True)    
+    
+    def __str__(self):
+        return f"{self.sender}-{self.reciever}-{self.status}"
