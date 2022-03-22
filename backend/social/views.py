@@ -1,4 +1,4 @@
-from rest_framework.generics import ListCreateAPIView
+from rest_framework.generics import ListCreateAPIView,RetrieveUpdateDestroyAPIView
 from rest_framework.views import APIView 
 from social.models import Like, Post,Comment
 from rest_framework.response import Response
@@ -11,6 +11,9 @@ class PostListCreateView(ListCreateAPIView):
     queryset=Post.objects.all()
     serializer_class=PostSerializer
 
+class PostDetailView(RetrieveUpdateDestroyAPIView):
+    queryset=Post.objects.all()
+    serializer_class=PostSerializer
 
 class CommentsListCreateView(APIView):
     def get(self,request,pk):
