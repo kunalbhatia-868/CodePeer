@@ -1,9 +1,6 @@
-from distutils.log import error
-from django import views
-from django.shortcuts import render
 from rest_framework.generics import ListCreateAPIView
 from rest_framework.views import APIView 
-from social.models import Post,Comment
+from social.models import Like, Post,Comment
 from rest_framework.response import Response
 from social.serializers import CommentSerializer, LikeSerializer, PostSerializer
 from rest_framework import status
@@ -25,7 +22,6 @@ class CommentsListCreateView(APIView):
     def post(self,request,pk):
         request.data['post']=pk
         serializer=CommentSerializer(data=request.data)
-        print(serializer)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data,status=status.HTTP_201_CREATED)
@@ -35,8 +31,13 @@ class CommentsListCreateView(APIView):
         
 class LikeCreateView(APIView):
     def post(self,request,pk):
-        request['post']=pk
-        serializer=LikeSerializer(request.data)
+        likeQuerySet=Like.objects.filter(user=request.data['user']).filter(post=pk)
+        if(likeQuerySet.exists()):
+            likeQuerySet.delete()
+            return Response(status=status.HTTP_201_CREATED)
+        
+        request.data['post']=pk
+        serializer=LikeSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data,status=status.HTTP_201_CREATED)
