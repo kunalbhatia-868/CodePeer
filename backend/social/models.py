@@ -1,6 +1,8 @@
 from re import S
 from django.db import models
 import uuid
+
+from django.forms import IntegerField
 from user.models import UserProfile
 # Create your models here.
 
@@ -10,6 +12,7 @@ class Post(models.Model):
     text=models.TextField(blank=True)
     image=models.ImageField(upload_to="uploads/",null=True,blank=True)
     file=models.FileField(upload_to="uploads/",null=True,blank=True)
+    # like_count=models.PositiveIntegerField(default=0)
     created_on=models.DateTimeField(auto_now_add=True)
     updated_on=models.DateTimeField(auto_now=True)
 
@@ -33,15 +36,15 @@ class Comment(models.Model):
 
 
 class Like(models.Model):
-    class LikeChoices(models.TextChoices):
-        Like='L',"LIKE"
-        UNLIKE='U',"UNLIKE"
-        NOCHOICE='NA',"NO CHOICE"
-        
-    
+    # class LikeChoices(models.TextChoices):
+    #     Like='LI',"LIKE"
+    #     Support='S',"Support"  
+    #     CELEBRATE='C',"CELEBRATE"  
+    #     Love='LO',"Love"  
+               
     user=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
     post=models.ForeignKey(Post,on_delete=models.CASCADE)
-    value=models.CharField(max_length=2,choices=LikeChoices.choices,default=LikeChoices.NOCHOICE)
+    # value=models.CharField(max_length=2,choices=LikeChoices.choices,null=True)
     created_on=models.DateTimeField(auto_now_add=True)
     updated_on=models.DateTimeField(auto_now=True)
 
