@@ -20,8 +20,10 @@ class LowercaseEmailField(models.EmailField):
     
 
 class UserProfile(AbstractUser):
-    username=models.CharField(_('username'),max_length=200,default='guest_user')
+    username=models.CharField(_('username'),max_length=200)
     email=LowercaseEmailField(_('email address'),unique=True)
+    first_name = models.CharField(_("first name"), max_length=150)
+    last_name = models.CharField(_("last name"), max_length=150)
     bio=models.TextField(max_length=1000)
     github_id=models.CharField(max_length=50,blank=True)
     image=models.ImageField(upload_to='uploads/',null=True,blank=True)

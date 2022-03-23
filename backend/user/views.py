@@ -1,11 +1,22 @@
 from django.db.models import Q
 from .models import Relationship
-from .serializers import RelationshipSerializer
+from .serializers import RelationshipSerializer,UserProfileSerializer
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.generics import RetrieveUpdateDestroyAPIView
 # Create your views here.
+
+
+class UserProfileSignup(APIView):
+    def post(self,request):
+        serializer=UserProfileSerializer(data=request.data)
+        print(request.data)
+        if serializer.is_valid():
+            serializer.save()
+            print(serializer.data)
+            return Response(serializer.data,status=status.HTTP_201_CREATED)
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 class RelationshipListCreateView(APIView):
     def get(self,request):
