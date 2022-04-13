@@ -1,6 +1,5 @@
 from django.urls import path
 
-from user.models import UserProfile 
 from .views import RelationshipListCreateView,RelationshipUpdateDeleteView,UserProfileSignup
 from rest_framework_simplejwt.views import (TokenObtainPairView,TokenRefreshView)
 
