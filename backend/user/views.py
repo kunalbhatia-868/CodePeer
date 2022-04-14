@@ -85,3 +85,16 @@ class RequestListView(APIView):     #see pending request
 class RelationshipUpdateDeleteView(RetrieveUpdateDestroyAPIView):
     queryset=Relationship.objects.all()
     serializer_class=RelationshipSerializer
+    
+class UserDetailView(APIView):
+    def get(self,request,pk):
+        user=get_object_or_404(UserProfile,id=pk)
+        serializer=UserProfileSerializer(user)
+        return Response(data=serializer.data,status=status.HTTP_200_OK)
+    
+    
+class SuggestFriend(APIView):       # not completed
+    def get(self,id):     
+       users=UserProfile.objects.all()
+       serializer=UserProfileSerializer(users,many=True)
+       return Response(data=serializer.data,status=status.HTTP_200_OK) 
