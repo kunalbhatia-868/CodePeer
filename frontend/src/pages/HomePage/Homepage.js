@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Adbar from "../../components/Adbar/Adbar";
 import Feed from "../../components/Feed/Feed";
@@ -8,6 +8,11 @@ import CreatePost from "../../components/CreatePost/CreatePost";
 import "./Homepage.css";
 
 function Homepage() {
+	useEffect(() => {
+		fetch("/posts/")
+			.then((response) => response.json())
+			.then((data) => console.log(data));
+	}, []);
 	return (
 		<div>
 			<header>
