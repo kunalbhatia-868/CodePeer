@@ -1,3 +1,4 @@
+from django.db.models import Q
 from rest_framework import serializers
 from .models import UserProfile,Relationship
 
@@ -34,4 +35,4 @@ class UserProfileSerializer(serializers.ModelSerializer):
 class RelationshipSerializer(serializers.ModelSerializer):
     class Meta:
         model=Relationship
-        fields="__all__"        
+        fields="__all__" 

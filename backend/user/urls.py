@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import RelationshipListCreateView,RelationshipUpdateDeleteView,UserProfileSignup
+from .views import RelationshipListCreateView,RelationshipUpdateDeleteView, RequestListView,UserProfileSignup
 from rest_framework_simplejwt.views import (TokenObtainPairView,TokenRefreshView)
 
 
@@ -10,4 +10,6 @@ urlpatterns = [
     path("token/refresh/",TokenRefreshView.as_view(),name="token_refresh"),
     path("friends/",RelationshipListCreateView.as_view(),name="friends"),
     path("friends/<int:pk>/",RelationshipUpdateDeleteView.as_view(),name="friends_update"),
+    path("pending-requests/",RequestListView.as_view(),name="pending_requests"),
+
 ]
