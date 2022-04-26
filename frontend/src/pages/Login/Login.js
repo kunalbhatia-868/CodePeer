@@ -1,5 +1,4 @@
 import React from "react";
-import InputBox from "../Signup/components/InputBox";
 
 function Login() {
 	return (
@@ -7,8 +6,24 @@ function Login() {
 			<h1 class="text-center font-pt-serif mt-10 text-4xl capitalize">Login</h1>
 			<div class="page-title-underline"></div>
 			<form action="" method="post" className="max-w-[30%] ml-[35%]">
-				<InputBox text="Username" name="username" />
-				<InputBox text="Password" name="password1" />
+				<div>
+					<label htmlFor={"username"}>{"Username"}</label>
+					<input
+						type="text"
+						name={"username"}
+						placeholder={"Username"}
+						className="input-box"
+					/>
+				</div>
+				<div>
+					<label htmlFor={"password1"}>{"UsernamPassword"}</label>
+					<input
+						type="text"
+						name={"password1"}
+						placeholder={"Password"}
+						className="input-box"
+					/>
+				</div>
 				<button className="submit" type="submit">
 					Login
 				</button>
