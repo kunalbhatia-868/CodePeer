@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Signup.css";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
 	const [values, setValues] = useState({
@@ -13,6 +14,8 @@ function Signup() {
 		github_id: "",
 	});
 
+	const navigate = useNavigate();
+
 	const handleChange = (name) => (event) => {
 		event.preventDefault();
 		setValues({ ...values, [name]: event.target.value });
@@ -21,12 +24,30 @@ function Signup() {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		fetch("http://127.0.0.1:8000/user/signup/", {
+		fetch("/user/signup/", {
 			method: "POST",
 			headers: {
+				Accept: "application/json",
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(values),
+		}).then((data) => {
+			if (data.status === 201) {
+				navigate("/login");
+			} else {
+				setValues({
+					...values,
+					username: "",
+					first_name: "",
+					last_name: "",
+					email: "",
+					password: "",
+					password2: "",
+					bio: "",
+					github_id: "",
+				});
+				alert("Please Fill you Form Carefully .");
+			}
 		});
 	};
 
@@ -84,7 +105,7 @@ function Signup() {
 						name={"password1"}
 						placeholder={"Password"}
 						className="input-box"
-						onChange={handleChange("password1")}
+						onChange={handleChange("password")}
 					/>
 				</div>
 				<div>
@@ -117,7 +138,7 @@ function Signup() {
 						onChange={handleChange("github_id")}
 					/>
 				</div>
-				<button className="submit" type="submit" onSubmit={handleSubmit}>
+				<button className="submit" type="submit" onClick={handleSubmit}>
 					Signup
 				</button>
 				<p>
