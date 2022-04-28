@@ -25,7 +25,7 @@ function Post({ postData }) {
 		fetch(`user/${user}/`)
 			.then((response) => response.json())
 			.then((data) => setpostUserInfo(data));
-	}, [user, postUserInfo]);
+	}, []);
 
 	return (
 		<div className="border-b-2 py-5 px-10 border-2 rounded-lg mx-4 my-5">
