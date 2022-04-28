@@ -34,6 +34,7 @@ function Signup() {
 		}).then((data) => {
 			if (data.status === 201) {
 				navigate("/login");
+				
 			} else {
 				setValues({
 					...values,
