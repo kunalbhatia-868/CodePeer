@@ -9,7 +9,8 @@ from user.models import UserProfile
 class Post(models.Model):
     post_id=models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
     user=models.ForeignKey(UserProfile,on_delete=models.CASCADE,related_name='posts')
-    text=models.TextField(blank=True)
+    title=models.TextField(blank=True)
+    description=models.TextField(blank=True)
     image=models.ImageField(upload_to="uploads/",null=True,blank=True)
     file=models.FileField(upload_to="uploads/",null=True,blank=True)
     # like_count=models.PositiveIntegerField(default=0)
@@ -20,7 +21,8 @@ class Post(models.Model):
     def __str__(self):
         return self.user.username
 
-
+    def __str__(self):
+        return  f"{self.user.username}"  
 
 class Comment(models.Model):
     user=models.ForeignKey(UserProfile,on_delete=models.CASCADE)
