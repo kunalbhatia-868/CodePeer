@@ -1,8 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import Avatar from "@mui/material/Avatar";
+import { isAuthenticated, signOut } from "../Utils/authHelper";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
+	const [isUserAutheticated, setUserAuthenticated] = useState(false);
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (isAuthenticated() === false) {
+			setUserAuthenticated(false);
+		} else {
+			setUserAuthenticated(true);
+		}
+		// console.log(isAuthenticated());
+		console.log(isUserAutheticated);
+	}, []);
+
+	const handleLogout = (event) => {
+		event.preventDefault();
+		signOut();
+		setUserAuthenticated(false);
+		console.log("User has been signed out");
+		navigate("/login");
+	};
 	return (
 		<nav className="flex items-center justify-evenly mt-3 2xl:mx-8 mb-4">
 			<a className="navbar-brand" href="/feed">
@@ -23,9 +45,35 @@ function Navbar() {
 				<a href="/notification" className="mr-5">
 					<NotificationsActiveIcon />
 				</a>
-				<a href="/profile" className="">
-					<Avatar alt="Cindy Baker" src="/./assets/avatar.jpg" />
-				</a>
+				{isUserAutheticated ? (
+					<div className="flex items-center">
+						<a href="/profile" className="px-2">
+							<Avatar alt="Cindy Baker" src="/./assets/Navatar.png" />
+						</a>
+						<a
+							href="/login"
+							className="px-2 font-nunito font-semibold text-teal-800"
+							onClick={handleLogout}
+						>
+							Logout
+						</a>
+					</div>
+				) : (
+					<div className="flex items-center">
+						<a
+							href="/login"
+							className="px-2 font-nunito font-semibold text-teal-800"
+						>
+							Login
+						</a>
+						<a
+							href="/signup"
+							className="px-2 font-nunito font-semibold text-teal-800"
+						>
+							Signup
+						</a>
+					</div>
+				)}
 			</div>
 		</nav>
 	);

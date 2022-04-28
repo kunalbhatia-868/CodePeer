@@ -1,40 +1,38 @@
 import React, { useState } from "react";
-import {useNavigate} from "react-router-dom";
-import { signIn,authenticate } from "../../components/Utils/authHelper";
+import { useNavigate } from "react-router-dom";
+import { signIn, authenticate } from "../../components/Utils/authHelper";
 
 function Login() {
-	const [values,setValues]=useState({
-		email:"",
-		password:"",
+	const [values, setValues] = useState({
+		email: "",
+		password: "",
 	});
-	const navigate=useNavigate();
+	const navigate = useNavigate();
 
-	const handleSubmit=(event)=>{
+	const handleSubmit = (event) => {
 		event.preventDefault();
-		
-		signIn(values)
-		.then(data=>{
-			console.log(data);
-			if(data.access){
-				authenticate(data.access,()=>{
+
+		signIn(values).then((data) => {
+			if (data.access) {
+				authenticate(data.access, () => {
 					navigate("/feed");
-				})
+				});
+			} else {
+				alert("Invalid Credentials");
 			}
-			else{
-				alert("Invalid Credentials")
-			}
-		})
-		
-	}
-	const handleChange=(param)=>(event)=>{
+		});
+	};
+	const handleChange = (param) => (event) => {
 		event.preventDefault();
-		setValues({...values,[param]:event.target.value});
-	}
+		setValues({ ...values, [param]: event.target.value });
+	};
 
 	return (
 		<div className="login-card h-screen">
-			<h1 class="text-center font-pt-serif mt-10 text-4xl capitalize">Login</h1>
-			<div class="page-title-underline"></div>
+			<h1 className="text-center font-pt-serif mt-10 text-4xl capitalize">
+				Login
+			</h1>
+			<div className="page-title-underline"></div>
 			<form action="" method="post" className="max-w-[30%] ml-[35%]">
 				<div>
 					<label htmlFor={"email"}>{"Email"}</label>
@@ -47,7 +45,7 @@ function Login() {
 					/>
 				</div>
 				<div>
-					<label htmlFor={"password1"}>{"UsernamPassword"}</label>
+					<label htmlFor={"password1"}>{"Password"}</label>
 					<input
 						type="password"
 						name={"password1"}
