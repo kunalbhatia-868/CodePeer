@@ -5,13 +5,18 @@ import Feed from "../../components/Feed/Feed";
 import Navbar from "../../components/Navbar/Navbar";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import CreatePost from "../../components/CreatePost/CreatePost";
+import { useState } from "react";
 import "./Homepage.css";
 
 function Homepage() {
+	const [feedData, setFeedData] = useState([]);
+
 	useEffect(() => {
 		fetch("/posts/")
 			.then((response) => response.json())
-			.then((data) => console.log(data));
+			.then((data) => {
+				setFeedData(data);
+			});
 	}, []);
 	return (
 		<div>
@@ -24,7 +29,7 @@ function Homepage() {
 				</div>
 				<div className="w-2/3 md:w-1/2 block overflow-y-scroll h-screen noscroll">
 					<CreatePost />
-					<Feed />
+					<Feed feedData={feedData} />
 				</div>
 				<div className="hidden lg:inline w-1/4">
 					<Adbar />

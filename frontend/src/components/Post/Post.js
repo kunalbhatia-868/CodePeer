@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import CommentRoundedIcon from "@mui/icons-material/CommentRounded";
 import ArrowDropDownRoundedIcon from "@mui/icons-material/ArrowDropDownRounded";
 import CommentList from "./CommentList";
 
-function Post() {
+function Post({ postData }) {
 	const [showComment, setShowComment] = useState(false);
 	const [showCreateComment, setShowCreateComment] = useState(false);
+
+	const [postUserInfo, setpostUserInfo] = useState({});
+	const {
+		user,
+		post_id,
+		title,
+		description,
+		created_on,
+		updated_on,
+		image,
+		file,
+	} = postData;
+
+	useEffect(() => {
+		fetch(`user/${user}/`)
+			.then((response) => response.json())
+			.then((data) => setpostUserInfo(data));
+	}, [user, postUserInfo]);
+
 	return (
 		<div className="border-b-2 py-5 px-10 border-2 rounded-lg mx-4 my-5">
 			<div className="author flex mx-3 my-3 flex-row flex-nowrap items-center cursor-pointer">

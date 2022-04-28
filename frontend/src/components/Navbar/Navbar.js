@@ -14,8 +14,6 @@ function Navbar() {
 		} else {
 			setUserAuthenticated(true);
 		}
-		// console.log(isAuthenticated());
-		console.log(isUserAutheticated);
 	}, []);
 
 	const handleLogout = (event) => {
