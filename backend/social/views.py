@@ -4,6 +4,9 @@ from social.models import Like, Post,Comment
 from rest_framework.response import Response
 from social.serializers import CommentSerializer, LikeSerializer, PostSerializer
 from rest_framework import status
+import jwt
+from backend.settings import SECRET_KEY
+from user.models import UserProfile
 # Create your views here.
 
 
@@ -24,6 +27,10 @@ class CommentsListCreateView(APIView):
     
     def post(self,request,pk):
         request.data['post']=pk
+        token=request.META['HTTP_AUTHORIZATION'].split(" ")[1]
+        user_email=jwt.decode(token,SECRET_KEY, algorithms=['HS256'])['user_id']
+        user_id=UserProfile.objects.get(email=user_email).id
+        request.data['user']=user_id
         serializer=CommentSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()

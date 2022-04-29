@@ -1,4 +1,3 @@
-import email
 from django.shortcuts import get_object_or_404
 import jwt
 from backend.settings import SECRET_KEY
