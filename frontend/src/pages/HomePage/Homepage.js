@@ -28,8 +28,8 @@ function Homepage() {
 					<Sidebar />
 				</div>
 				<div className="w-2/3 md:w-1/2 block overflow-y-scroll h-screen noscroll">
-					<CreatePost />
-					<Feed feedData={feedData} />
+					<CreatePost feedData={feedData} />
+					<Feed feedData={feedData} setFeedData={setFeedData} />
 				</div>
 				<div className="hidden lg:inline w-1/4">
 					<Adbar />

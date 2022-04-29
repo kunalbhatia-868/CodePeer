@@ -22,7 +22,6 @@ function Post({ postData }) {
 	} = postData;
 
 	const [commentDataSet, setCommentDataSet] = useState({});
-
 	useEffect(() => {
 		fetch(`user/${user}/`)
 			.then((response) => response.json())
@@ -60,7 +59,6 @@ function Post({ postData }) {
 			</div>
 			<div className="content">
 				<div className="font-semibold text-black mx-3 text-xl">{title}</div>
-				<br />
 				<br />
 				<div className=" font-pt-serif font-normal text-black mx-3">
 					{description}

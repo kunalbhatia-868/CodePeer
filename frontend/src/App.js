@@ -14,7 +14,7 @@ function App() {
 			<BrowserRouter>
 				<Routes>
 					<Route exact path="/feed" element={<Homepage />} />
-					<Route exact path="/feed/:id" element={<PostDetail />} />
+					<Route exact path="/feed/:post_id" element={<PostDetail />} />
 					<Route exact path="/profile" element={<Profile />} />
 					<Route exact path="/following" element={<Peoples />} />
 					<Route exact path="/login" element={<Login />} />

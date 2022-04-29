@@ -10,9 +10,24 @@ from user.models import UserProfile
 # Create your views here.
 
 
-class PostListCreateView(ListCreateAPIView):
-    queryset=Post.objects.all()
-    serializer_class=PostSerializer
+class PostListCreateView(APIView):
+    def get(self,request):
+        post_list=Post.objects.all()
+        serializer=PostSerializer(post_list,many=True)
+        return Response(data=serializer.data,status=status.HTTP_200_OK)
+    
+    def post(self,request):
+        token=request.META['HTTP_AUTHORIZATION'].split(" ")[1]
+        user_email=jwt.decode(token,SECRET_KEY, algorithms=['HS256'])['user_id']
+        user_id=UserProfile.objects.get(email=user_email).id
+        request.data['user']=user_id
+        serializer=PostSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+        
 
 class PostDetailView(RetrieveUpdateDestroyAPIView):
     queryset=Post.objects.all()

@@ -9,7 +9,7 @@ function Comment({ commentData }) {
 		fetch(`user/${user}/`)
 			.then((response) => response.json())
 			.then((data) => setCommentUserInfo(data));
-	});
+	}, []);
 
 	return (
 		<div className="hover:bg-gray-200 hover:rounded-lg p-2">
@@ -34,7 +34,7 @@ function Comment({ commentData }) {
 							/>
 						)}
 					</a>
-					<div className="ml-2 font-nunito font-semibold text-xs">
+					<div className="ml-2 font-nunito font-semibold text-sm">
 						{commentUserInfo.username}
 					</div>
 				</div>
@@ -42,7 +42,7 @@ function Comment({ commentData }) {
 					• 25 mins ago
 				</div>
 			</div>
-			<div className="font-dosis font-semibold text-xs lg:text-sm">{text}</div>
+			<div className="font-dosis font-semibold text-sm ml-11 mt-1">{text}</div>
 		</div>
 	);
 }

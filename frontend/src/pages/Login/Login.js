@@ -3,10 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { signIn, authenticate } from "../../components/Utils/authHelper";
 
 function Login() {
-	const [values, setValues] = useState({
-		email: "",
-		password: "",
-	});
+	const [values, setValues] = useState({});
 	const navigate = useNavigate();
 
 	const handleSubmit = (event) => {
@@ -35,21 +32,21 @@ function Login() {
 			<div className="page-title-underline"></div>
 			<form action="" method="post" className="max-w-[30%] ml-[35%]">
 				<div>
-					<label htmlFor={"email"}>{"Email"}</label>
+					<label htmlFor="email">Email</label>
 					<input
 						type="text"
-						name={"email"}
-						placeholder={"Email"}
+						id="email"
+						placeholder="Email"
 						className="input-box"
 						onChange={handleChange("email")}
 					/>
 				</div>
 				<div>
-					<label htmlFor={"password1"}>{"Password"}</label>
+					<label htmlFor="password1">Password</label>
 					<input
 						type="password"
-						name={"password1"}
-						placeholder={"Password"}
+						id="password1"
+						placeholder="Password"
 						className="input-box"
 						onChange={handleChange("password")}
 					/>
@@ -59,7 +56,7 @@ function Login() {
 				</button>
 				<p className="underline my-3">Forgot your password?</p>
 				<p>
-					Don't have an account? ?{" "}
+					Don't have an account?
 					<a href="/signup" className=" italic underline text-cyan-800 my-3">
 						Signup
 					</a>

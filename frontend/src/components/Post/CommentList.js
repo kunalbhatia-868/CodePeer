@@ -8,8 +8,6 @@ function CommentList({
 	post_id,
 }) {
 	const [commmentInput, setCommentInput] = useState();
-	console.log(commentDataSet);
-
 	const handleChange = (event) => {
 		event.preventDefault();
 		setCommentInput(event.target.value);
