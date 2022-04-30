@@ -22,6 +22,7 @@ function Post({ postData }) {
 	} = postData;
 
 	const [commentDataSet, setCommentDataSet] = useState({});
+
 	useEffect(() => {
 		fetch(`user/${user}/`)
 			.then((response) => response.json())
