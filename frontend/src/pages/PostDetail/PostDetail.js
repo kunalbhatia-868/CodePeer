@@ -10,7 +10,6 @@ import { useParams } from "react-router";
 function PostDetail() {
 	let { post_id } = useParams();
 	const [postData, setPostData] = useState({});
-	console.log(post_id);
 	useEffect(() => {
 		fetch(`/posts/${post_id}`)
 			.then((response) => response.json())
@@ -18,7 +17,6 @@ function PostDetail() {
 				setPostData(data);
 			});
 	}, []);
-	console.log(postData);
 	return (
 		<div>
 			<header>

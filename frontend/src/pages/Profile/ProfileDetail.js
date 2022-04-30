@@ -30,7 +30,7 @@ function ProfileDetail() {
 					</a>
 					<button
 						type="button"
-						class=" mx-1 text-white font-fredoka font-bold text-lg px-5 py-2 rounded-3xl bg-gradient-to-r from-sky-400 to-blue-500"
+						className=" mx-1 text-white font-fredoka font-bold text-lg px-5 py-2 rounded-3xl bg-gradient-to-r from-sky-400 to-blue-500"
 					>
 						Follow
 					</button>

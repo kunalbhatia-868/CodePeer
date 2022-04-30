@@ -71,9 +71,15 @@ function Post({ postData }) {
 				}
 			});
 	};
+
+	const postUserUrl = `/profile/${user}`;
+	const postDetailUrl = `/feed/${post_id}`;
 	return (
 		<div className="border-b-2 py-5 px-10 border-2 rounded-lg mx-4 my-5">
-			<div className="author flex mx-3 my-3 flex-row flex-nowrap items-center cursor-pointer">
+			<a
+				href={postUserUrl}
+				className="author flex mx-3 my-3 flex-row flex-nowrap items-center cursor-pointer"
+			>
 				<div className="author-image w-[40px] min-w-[40px]">
 					{postUserInfo.image ? (
 						<img
@@ -95,8 +101,8 @@ function Post({ postData }) {
 					<div className="author-about text-[10px]">{postUserInfo.bio}</div>
 					<div className="post-date-time text-[12px]">• 2 days ago</div>
 				</div>
-			</div>
-			<div className="content">
+			</a>
+			<a href={postDetailUrl} className="content">
 				<div className="font-semibold text-black mx-3 text-xl">{title}</div>
 				<br />
 				<div className=" font-pt-serif font-normal text-black mx-3">
@@ -112,7 +118,7 @@ function Post({ postData }) {
 						/>
 					</div>
 				)}
-			</div>
+			</a>
 			<div className="like-comment flex justify-between mx-3 mt-5">
 				{islikedPost ? (
 					<div className="flex items-center text-cyan-600 cursor-pointer">
