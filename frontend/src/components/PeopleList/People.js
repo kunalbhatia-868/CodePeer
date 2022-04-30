@@ -3,12 +3,14 @@ import Avatar from "@mui/material/Avatar";
 import MessageIcon from "@mui/icons-material/Message";
 import VideoCallRoundedIcon from "@mui/icons-material/VideoCallRounded";
 
-function People({ followStatus }) {
+function People({ followStatus, friendData }) {
+	const { username, id } = friendData;
+	const userUrl = `profile/${id}/`;
 	return (
 		<div className="hover:bg-gray-200 hover:rounded-lg p-2 my-4">
 			<div className="flex justify-between items-center">
 				<div className="flex items-center">
-					<a href="/" className="">
+					<a href={userUrl} className="">
 						<Avatar
 							alt="Cindy Baker"
 							src="/./assets/avatar.jpg"
@@ -16,7 +18,7 @@ function People({ followStatus }) {
 						/>
 					</a>
 					<div className="ml-2 font-nunito font-semibold text-sm">
-						Cindy Baker
+						{username}
 					</div>
 				</div>
 				{followStatus ? (

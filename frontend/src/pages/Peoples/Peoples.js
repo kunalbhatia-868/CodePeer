@@ -21,10 +21,6 @@ function Peoples() {
 						People You are Following
 					</div>
 					<PeopleList followStatus={true} />
-					<div className="font-nunito text-2xl font-bold my-10 mx-3">
-						People You Might Know
-					</div>
-					<PeopleList followStatus={false} />
 				</div>
 				<div className="hidden lg:inline w-1/4">
 					<Adbar />
