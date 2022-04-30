@@ -23,6 +23,10 @@ function Post({ postData }) {
 
 	const [commentDataSet, setCommentDataSet] = useState({});
 
+	const [islikedPost, setIsLikedPost] = useState(false);
+
+	let token = JSON.parse(localStorage.jwt);
+
 	useEffect(() => {
 		fetch(`user/${user}/`)
 			.then((response) => response.json())
@@ -31,8 +35,42 @@ function Post({ postData }) {
 		fetch(`posts/${post_id}/comments`)
 			.then((response) => response.json())
 			.then((data) => setCommentDataSet(data));
+
+		fetch(`posts/${post_id}/is_liked/`, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				setIsLikedPost(data.message);
+			});
 	}, []);
 
+	const handleLike = (event) => {
+		event.preventDefault();
+		let token = JSON.parse(localStorage.jwt);
+		fetch(`posts/${post_id}/like/`, {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${token}`,
+				Accept: "application/json",
+				"Content-Type": "application/json",
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Credentials": true,
+			},
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				if (islikedPost === true) {
+					setIsLikedPost(false);
+				} else {
+					setIsLikedPost(true);
+				}
+			});
+	};
 	return (
 		<div className="border-b-2 py-5 px-10 border-2 rounded-lg mx-4 my-5">
 			<div className="author flex mx-3 my-3 flex-row flex-nowrap items-center cursor-pointer">
@@ -76,12 +114,27 @@ function Post({ postData }) {
 				)}
 			</div>
 			<div className="like-comment flex justify-between mx-3 mt-5">
-				<div className="flex items-center hover:text-cyan-600 cursor-pointer">
-					<FavoriteBorderRoundedIcon sx={{ fontSize: 25 }} />
-					<div className="font-fredoka ml-2 text-lg font-medium text-slate-800">
-						Like
+				{islikedPost ? (
+					<div className="flex items-center text-cyan-600 cursor-pointer">
+						<FavoriteBorderRoundedIcon
+							sx={{ fontSize: 25 }}
+							onClick={handleLike}
+						/>
+						<div className="font-fredoka ml-2 text-lg font-medium text-cyan-600">
+							Like
+						</div>
 					</div>
-				</div>
+				) : (
+					<div className="flex items-center hover:text-cyan-600 cursor-pointer">
+						<FavoriteBorderRoundedIcon
+							sx={{ fontSize: 25 }}
+							onClick={handleLike}
+						/>
+						<div className="font-fredoka ml-2 text-lg font-medium text-slate-800">
+							Like
+						</div>
+					</div>
+				)}
 				<div className="flex">
 					<div className="flex items-center hover:text-cyan-600 cursor-pointer">
 						<CommentRoundedIcon sx={{ fontSize: 25 }}></CommentRoundedIcon>
