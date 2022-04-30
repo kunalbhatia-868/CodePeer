@@ -105,6 +105,7 @@ function Post({ postData }) {
 				showComment={showComment}
 				showCreateComment={showCreateComment}
 				commentDataSet={commentDataSet}
+				setCommentDataSet={setCommentDataSet}
 				post_id={post_id}
 			/>
 		</div>

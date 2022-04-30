@@ -5,6 +5,7 @@ function CommentList({
 	showComment,
 	showCreateComment,
 	commentDataSet,
+	setCommentDataSet,
 	post_id,
 }) {
 	const [commmentInput, setCommentInput] = useState("");
@@ -24,7 +25,15 @@ function CommentList({
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({ text: commmentInput }),
-		});
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				setCommentDataSet((prevCommentDataSet) => [
+					...prevCommentDataSet,
+					data,
+				]);
+				setCommentInput("");
+			});
 	};
 	return (
 		<div>
@@ -40,6 +49,7 @@ function CommentList({
 							type="text"
 							placeholder="What's on you mind ?"
 							onChange={handleChange}
+							value={commmentInput}
 						/>
 						<button
 							type="button"
