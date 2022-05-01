@@ -50,7 +50,7 @@ function Navbar() {
 				<a className="mx-3 " href="/feed">
 					Feed
 				</a>
-				<a className="mx-3 " href="/">
+				<a className="mx-3 " href="/news">
 					Explore
 				</a>
 				<a className="mx-3 " href="/following">

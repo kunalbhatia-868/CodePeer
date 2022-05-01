@@ -5,6 +5,7 @@ from user.serializers import UserProfileSerializer
 
 
 class PostSerializer(serializers.ModelSerializer):
+    user=UserProfileSerializer()
     class Meta:
         model=Post
         fields='__all__'

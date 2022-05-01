@@ -9,7 +9,7 @@ function Post({ postData }) {
 	const [showComment, setShowComment] = useState(false);
 	const [showCreateComment, setShowCreateComment] = useState(false);
 
-	const [postUserInfo, setpostUserInfo] = useState({});
+	// const [postUserInfo, setpostUserInfo] = useState({});
 	const {
 		user,
 		post_id,
@@ -27,26 +27,28 @@ function Post({ postData }) {
 
 	let token = JSON.parse(localStorage.jwt);
 
+	let postUserInfo = {};
+	if (user !== undefined) {
+		postUserInfo = postData.user;
+	}
 	useEffect(() => {
-		fetch(`/user/${user}/`)
-			.then((response) => response.json())
-			.then((data) => setpostUserInfo(data));
+		if (post_id !== undefined) {
+			fetch(`/posts/${post_id}/comments/`)
+				.then((response) => response.json())
+				.then((data) => setCommentDataSet(data));
 
-		fetch(`/posts/${post_id}/comments/`)
-			.then((response) => response.json())
-			.then((data) => setCommentDataSet(data));
-
-		fetch(`/posts/${post_id}/is_liked/`, {
-			headers: {
-				Authorization: `Bearer ${token}`,
-				Accept: "application/json",
-				"Content-Type": "application/json",
-			},
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				setIsLikedPost(data.message);
-			});
+			fetch(`/posts/${post_id}/is_liked/`, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+					Accept: "application/json",
+					"Content-Type": "application/json",
+				},
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					setIsLikedPost(data.message);
+				});
+		}
 	}, []);
 
 	const handleLike = (event) => {

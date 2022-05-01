@@ -43,7 +43,7 @@ function ProfileDetail({ user_id }) {
 	return (
 		<div className="mt-7 w-2/3 md:w-1/2 block overflow-y-scroll h-screen noscroll">
 			<div className="profile flex flex-row items-baseline justify-between mx-2">
-				<a href="/" className="">
+				<a href="/" className="ml-1">
 					<Avatar
 						alt="/"
 						src="/./assets/Navatar.png"
@@ -69,7 +69,7 @@ function ProfileDetail({ user_id }) {
 					</button>
 				</div>
 			</div>
-			<div className="details">
+			<div className="details ml-5">
 				<div className="text-lg font-nunito font-semibold capitalize">
 					{userData.first_name} {userData.last_name} 🚀
 				</div>

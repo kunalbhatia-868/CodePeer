@@ -13,7 +13,7 @@ function SingleNotification() {
 					/>
 				</a>
 				<div className="ml-2 font-nunito font-semibold text-sm">
-					Cindy Baker
+					Cindy Baker - KubeCon_ scholarship
 				</div>
 			</div>
 			<div className="font-dosis font-semibold italic leading-snug">
