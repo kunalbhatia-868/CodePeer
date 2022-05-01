@@ -1,5 +1,6 @@
-from rest_framework.generics import ListCreateAPIView,RetrieveUpdateDestroyAPIView
-from rest_framework.views import APIView 
+from rest_framework.generics import RetrieveUpdateDestroyAPIView
+from rest_framework.views import APIView
+from user.serializers import UserProfileSerializer
 from social.models import Like, Post,Comment
 from rest_framework.response import Response
 from social.serializers import CommentSerializer, LikeSerializer, PostSerializer
@@ -85,4 +86,12 @@ class LikeCheckAPIView(APIView):
             return Response(data={'message':True},status=status.HTTP_201_CREATED)
         else:
             return Response(data={'message':False},status=status.HTTP_201_CREATED)
-            
+
+
+class UserPostListView(APIView):
+    def get(self,request,pk):
+        post_list=Post.objects.filter(user=pk)
+        serializer=PostSerializer(post_list,many=True)
+        return Response(data=serializer.data,status=status.HTTP_200_OK)
+    
+    

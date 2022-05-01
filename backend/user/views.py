@@ -104,3 +104,13 @@ class UserDetailView(APIView):
 #         users=UserProfile.objects.exclude(sender__id=user_id).exclude(Q(reciever__id=user_id))
 #         serializer=UserProfileSerializer(users,many=True)
 #         return Response(data={"data":serializer.data,"id":user_id},status=status.HTTP_200_OK) 
+
+
+class CurrentUserDetail(APIView):
+    def get(self,request):
+        token=request.META['HTTP_AUTHORIZATION'].split(" ")[1]
+        user_email=jwt.decode(token,SECRET_KEY, algorithms=['HS256'])['user_id']
+        user_id=UserProfile.objects.get(email=user_email).id
+        user=UserProfile.objects.get(id=user_id)
+        serializer=UserProfileSerializer(user)
+        return Response(data=serializer.data,status=status.HTTP_200_OK)

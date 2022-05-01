@@ -19,6 +19,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
         last_name=self.validated_data['last_name']    
         bio=self.validated_data['bio']     
         email=self.validated_data['email']
+        github_id=self.validated_data['github_id']
         
         if password2!=password:
             raise serializers.ValidationError("p1 and p2 not same")
@@ -27,7 +28,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
         if (UserProfile.objects.filter(email=email).exists()):
             raise serializers.ValidationError("email already exists")
                 
-        account=UserProfile(email=email,username=username,first_name=first_name,last_name=last_name,bio=bio)
+        account=UserProfile(email=email,username=username,first_name=first_name,last_name=last_name,bio=bio,github_id=github_id)
         account.set_password(password)
         account.save()
         return account

@@ -9,20 +9,6 @@ function NotificationList() {
 			</div>
 			<div>
 				<SingleNotification />
-				<SingleNotification />
-				<SingleNotification />
-				<SingleNotification />
-				<SingleNotification />
-				<SingleNotification />
-				<SingleNotification />
-				<SingleNotification />
-				<SingleNotification />
-				<SingleNotification />
-				<SingleNotification />
-				<SingleNotification />
-				<SingleNotification />
-				<SingleNotification />
-				<SingleNotification />
 			</div>
 		</div>
 	);

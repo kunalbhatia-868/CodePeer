@@ -28,15 +28,15 @@ function Post({ postData }) {
 	let token = JSON.parse(localStorage.jwt);
 
 	useEffect(() => {
-		fetch(`user/${user}/`)
+		fetch(`/user/${user}/`)
 			.then((response) => response.json())
 			.then((data) => setpostUserInfo(data));
 
-		fetch(`posts/${post_id}/comments`)
+		fetch(`/posts/${post_id}/comments/`)
 			.then((response) => response.json())
 			.then((data) => setCommentDataSet(data));
 
-		fetch(`posts/${post_id}/is_liked/`, {
+		fetch(`/posts/${post_id}/is_liked/`, {
 			headers: {
 				Authorization: `Bearer ${token}`,
 				Accept: "application/json",
@@ -52,7 +52,7 @@ function Post({ postData }) {
 	const handleLike = (event) => {
 		event.preventDefault();
 		let token = JSON.parse(localStorage.jwt);
-		fetch(`posts/${post_id}/like/`, {
+		fetch(`/posts/${post_id}/like/`, {
 			method: "POST",
 			headers: {
 				Authorization: `Bearer ${token}`,
