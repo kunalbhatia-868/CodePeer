@@ -16,7 +16,6 @@ function Homepage() {
 			.then((response) => response.json())
 			.then((data) => {
 				setFeedData(data);
-				console.log(feedData);
 			});
 	}, []);
 
