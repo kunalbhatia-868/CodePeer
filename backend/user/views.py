@@ -92,20 +92,23 @@ class UserDetailView(APIView):
         return Response(data=serializer.data,status=status.HTTP_200_OK)
     
     
-# class SuggestFriend(APIView):       # not completed
-#     def get(self,request):     
-#         token=request.META['HTTP_AUTHORIZATION'].split(" ")[1]
-#         user_email=jwt.decode(token,SECRET_KEY, algorithms=['HS256'])['user_id']
-#         user_id=UserProfile.objects.get(email=user_email).id
+class CheckFriend(APIView):       # not completed
+    def get(self,request,pk):     
+        token=request.META['HTTP_AUTHORIZATION'].split(" ")[1]
+        user_email=jwt.decode(token,SECRET_KEY, algorithms=['HS256'])['user_id']
+        user_id=UserProfile.objects.get(email=user_email).id
         
-#         friendList=list(UserProfile.objects.filter(id=user_id).reciever.values_list('sender'))
-#         print(friendList)
+        user2_id=pk
         
-#         users=UserProfile.objects.exclude(sender__id=user_id).exclude(Q(reciever__id=user_id))
-#         serializer=UserProfileSerializer(users,many=True)
-#         return Response(data={"data":serializer.data,"id":user_id},status=status.HTTP_200_OK) 
-
-
+        relation_qs=Relationship.objects.filter((Q(sender=user_id) & Q(reciever=user2_id)) | (Q(sender=user2_id) & Q(reciever=user_id)))
+        
+        if(relation_qs.exists()):
+            return Response(data={"response":True,"user_id":user_id,"user2_id":user2_id},status=status.HTTP_200_OK)
+        else:
+            return Response(data={"response":False,"user_id":user_id,"user2_id":user2_id},status=status.HTTP_200_OK)
+            
+    
+    
 class CurrentUserDetail(APIView):
     def get(self,request):
         token=request.META['HTTP_AUTHORIZATION'].split(" ")[1]
@@ -114,3 +117,27 @@ class CurrentUserDetail(APIView):
         user=UserProfile.objects.get(id=user_id)
         serializer=UserProfileSerializer(user)
         return Response(data=serializer.data,status=status.HTTP_200_OK)
+    
+class SuggestListView(APIView):
+    def get(self,request):
+        token=request.META['HTTP_AUTHORIZATION'].split(" ")[1]
+        user_email=jwt.decode(token,SECRET_KEY, algorithms=['HS256'])['user_id']
+        user_id=UserProfile.objects.get(email=user_email).id
+        
+        all_users=UserProfile.objects.filter(~Q(id=user_id))
+        
+        
+        friendList=[]
+        for user2 in all_users:
+            relation_qs=Relationship.objects.filter((Q(sender=user_id) & Q(reciever=user2.id)) | (Q(sender=user2.id) & Q(reciever=user_id)))  
+            if(relation_qs.exists()):
+                pass
+            else:
+                friendList.append(user2.id)
+            
+
+        
+        users=UserProfile.objects.filter(~Q(id=user_id)).filter(id__in=friendList)
+        serializer=UserProfileSerializer(users,many=True)
+        return Response(data=serializer.data,status=status.HTTP_200_OK)
+    
