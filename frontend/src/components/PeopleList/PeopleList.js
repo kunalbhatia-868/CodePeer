@@ -17,9 +17,8 @@ function PeopleList({ followStatus }) {
 		})
 			.then((response) => response.json())
 			.then((data) => {
-				setFriendsList(data.data);
 				const currUserId = data.id;
-				const tempData = [...data.data];
+				const tempData = data.data;
 				const newData = [];
 				tempData.map((friend) => {
 					if (friend.reciever.id !== currUserId) {
@@ -39,9 +38,9 @@ function PeopleList({ followStatus }) {
 					{friendsList.map((friend) => {
 						return (
 							<People
-								key={friend.id}
+								key={friend}
 								followStatus={followStatus}
-								friendData={friend}
+								friendId={friend}
 							/>
 						);
 					})}

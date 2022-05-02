@@ -9,9 +9,44 @@ import "../HomePage/Homepage.css";
 function ProfileDetail({ user_id }) {
 	const [feedData, setFeedData] = useState([]);
 	const [userData, setUserData] = useState({});
+	const [isFriend, setIsFriend] = useState();
 	let token = JSON.parse(localStorage.jwt);
 
+	const handleFollow = (event) => {
+		event.preventDefault();
+
+		fetch(`/user/connections/`, {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${token}`,
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				reciever: user_id,
+			}),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data);
+				document.getElementById(`follow-button`).innerHTML = "✔ Following";
+			});
+	};
+
 	useEffect(() => {
+		fetch(`/user/connections/check/${user_id}`, {
+			method: "GET",
+			headers: {
+				Authorization: `Bearer ${token}`,
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				setIsFriend(data);
+			});
+
 		fetch(`/user/${user_id}`, {
 			method: "GET",
 			headers: {
@@ -61,12 +96,23 @@ function ProfileDetail({ user_id }) {
 					<a href="/" className="mx-1">
 						<VideoCallRoundedIcon sx={{ fontSize: 33 }} />
 					</a>
-					<button
-						type="button"
-						className=" mx-1 text-white font-fredoka font-bold text-lg px-5 py-2 rounded-3xl bg-gradient-to-r from-sky-400 to-blue-500"
-					>
-						Follow
-					</button>
+					{isFriend !== undefined && isFriend.response === false ? (
+						<button
+							type="button"
+							id="follow-button"
+							className=" mx-1 text-white font-fredoka font-bold text-lg px-5 py-2 rounded-3xl bg-gradient-to-r from-sky-400 to-blue-500"
+							onClick={handleFollow}
+						>
+							Follow
+						</button>
+					) : (
+						<button
+							type="button"
+							className=" mx-1 text-white font-fredoka font-bold text-md px-5 py-2 rounded-3xl bg-gradient-to-r from-sky-400 to-blue-500"
+						>
+							✔ Following
+						</button>
+					)}
 				</div>
 			</div>
 			<div className="details ml-5">

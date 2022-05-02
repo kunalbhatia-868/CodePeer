@@ -34,8 +34,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
         return account
         
 class RelationshipSerializer(serializers.ModelSerializer):
-    sender=UserProfileSerializer()
-    reciever=UserProfileSerializer()
     class Meta:
         model=Relationship
         fields="__all__" 

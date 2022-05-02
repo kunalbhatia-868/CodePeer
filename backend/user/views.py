@@ -32,7 +32,7 @@ class RelationshipListCreateView(APIView):
         serializer=RelationshipSerializer(relation_qs,many=True)
         return Response(data={"data":serializer.data,"id":user_id},status=status.HTTP_200_OK)
     
-    def put(self,request):      # accespting a sent request
+    def put(self,request):      # accepting a sent request
         token=request.META['HTTP_AUTHORIZATION'].split(" ")[1]
         user_email=jwt.decode(token,SECRET_KEY, algorithms=['HS256'])['user_id']
         reciever_id=UserProfile.objects.get(email=user_email).id

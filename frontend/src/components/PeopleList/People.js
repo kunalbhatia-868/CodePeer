@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import MessageIcon from "@mui/icons-material/Message";
 import VideoCallRoundedIcon from "@mui/icons-material/VideoCallRounded";
 
-function People({ followStatus, friendData }) {
-	const { username, id } = friendData;
-	const userUrl = `profile/${id}/`;
+function People({ followStatus, friendId }) {
+	const [userData, setUserData] = useState({});
+	let token = JSON.parse(localStorage.jwt);
+
+	useEffect(() => {
+		fetch(`/user/${friendId}`, {
+			method: "GET",
+			headers: {
+				Authorization: `Bearer ${token}`,
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				setUserData(data);
+			});
+	});
+
+	const userUrl = `profile/${friendId}/`;
 	return (
 		<div className="hover:bg-gray-200 hover:rounded-lg p-2 my-4">
 			<div className="flex justify-between items-center">
@@ -13,12 +30,12 @@ function People({ followStatus, friendData }) {
 					<a href={userUrl} className="">
 						<Avatar
 							alt="Cindy Baker"
-							src="/./assets/avatar.jpg"
+							src="/./assets/Navatar.png"
 							sx={{ width: 45, height: 45 }}
 						/>
 					</a>
 					<div className="ml-2 font-nunito font-semibold text-sm">
-						{username}
+						{userData.username}
 					</div>
 				</div>
 				{followStatus ? (
