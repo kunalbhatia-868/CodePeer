@@ -24,7 +24,7 @@ function Sidebar() {
 				setUserData(data);
 			});
 	}, []);
-	let userProfileLink = `profile/${userData.id}`;
+	const userProfileLink = `profile/${userData.id}`;
 	return (
 		<div>
 			<SidebarLinks text="Feed" Icon={FeedRoundedIcon} link="feed" />

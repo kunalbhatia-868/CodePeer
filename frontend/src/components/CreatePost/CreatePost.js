@@ -27,6 +27,7 @@ function CreatePost({ setFeedData }) {
 		})
 			.then((response) => response.json())
 			.then((data) => {
+				console.log(data);
 				setFeedData((prevFeedData) => [...prevFeedData, data]);
 				setFormData({
 					title: "",

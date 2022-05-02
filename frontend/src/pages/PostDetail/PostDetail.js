@@ -27,7 +27,7 @@ function PostDetail() {
 					<Sidebar />
 				</div>
 				<div className="w-2/3 md:w-1/2 block overflow-y-scroll h-screen noscroll">
-					<Post postData={postData} />
+					{postData.post_id !== undefined && <Post postData={postData} />}
 				</div>
 				<div className="hidden lg:inline w-1/4">
 					<Adbar />

@@ -5,10 +5,14 @@ from user.serializers import UserProfileSerializer
 
 
 class PostSerializer(serializers.ModelSerializer):
-    user=UserProfileSerializer()
     class Meta:
         model=Post
         fields='__all__'
+        
+    def to_representation(self, instance):
+        rep= super().to_representation(instance)
+        rep['user']=UserProfileSerializer(instance.user).data
+        return rep
         
 
 class CommentSerializer(serializers.ModelSerializer):

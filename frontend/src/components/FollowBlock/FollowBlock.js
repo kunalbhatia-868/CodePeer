@@ -10,7 +10,7 @@ function FollowBlock() {
 	let token = JSON.parse(localStorage.jwt);
 
 	useEffect(() => {
-		fetch(`user/people-you-may-know/`, {
+		fetch(`/user/people-you-may-know/`, {
 			method: "GET",
 			headers: {
 				Authorization: `Bearer ${token}`,
@@ -24,7 +24,6 @@ function FollowBlock() {
 			});
 	}, []);
 
-	console.log(suggestList);
 	return (
 		<div className="my-7 pt-7 rounded-sm shadow-md bg-[#f5f4f4] ml-5">
 			<div className="px-4 mb-4 font-fredoka font-extrabold text-xl">

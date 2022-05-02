@@ -26,7 +26,6 @@ function Post({ postData }) {
 	const [islikedPost, setIsLikedPost] = useState(false);
 
 	let token = JSON.parse(localStorage.jwt);
-
 	let postUserInfo = {};
 	if (user !== undefined) {
 		postUserInfo = postData.user;
@@ -74,7 +73,7 @@ function Post({ postData }) {
 			});
 	};
 
-	const postUserUrl = `/profile/${user}`;
+	const postUserUrl = `/profile/${user.id}`;
 	const postDetailUrl = `/feed/${post_id}`;
 	return (
 		<div className="border-b-2 py-5 px-10 border-2 rounded-lg mx-4 my-5">
