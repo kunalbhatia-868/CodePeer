@@ -4,7 +4,7 @@ import People from "./People";
 function PeopleList({ followStatus }) {
 	const [friendsList, setFriendsList] = useState([]);
 
-	let token = JSON.parse(localStorage.jwt);
+	let token = JSON.parse(localStorage.getItem("jwt"));
 
 	useEffect(() => {
 		fetch("/user/connections/", {
@@ -26,6 +26,7 @@ function PeopleList({ followStatus }) {
 					} else {
 						newData.push(friend.sender);
 					}
+					return friend;
 				});
 				setFriendsList(newData);
 			});

@@ -20,7 +20,7 @@ function People({ followStatus, friendId }) {
 			.then((data) => {
 				setUserData(data);
 			});
-	});
+	}, []);
 
 	const userUrl = `profile/${friendId}/`;
 	return (
