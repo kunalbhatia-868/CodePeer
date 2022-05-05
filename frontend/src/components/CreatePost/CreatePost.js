@@ -8,11 +8,30 @@ function CreatePost({ setFeedData }) {
 		description: "",
 	});
 
+	const [loading, setLoading] = useState(false);
+
+	const uploadImage = async (event) => {
+		event.preventDefault();
+		const files = event.target.files;
+		const data = new FormData();
+		data.append("file", files[0]);
+		data.append("upload_preset", "geekyimages");
+
+		const res = await fetch(
+			"https://api.cloudinary.com/v1_1/kunalimagecloud/image/upload",
+			{
+				method: "POST",
+				body: data,
+			}
+		);
+		const file = await res.json();
+		setFormData({ ...formData, image: file.secure_url });
+	};
+
 	const handleChange = (param) => (event) => {
 		event.preventDefault();
 		setFormData({ ...formData, [param]: event.target.value });
 	};
-
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		let token = JSON.parse(localStorage.jwt);
@@ -28,11 +47,13 @@ function CreatePost({ setFeedData }) {
 			.then((response) => response.json())
 			.then((data) => {
 				console.log(data);
-				setFeedData((prevFeedData) => [...prevFeedData, data]);
+				setFeedData((prevFeedData) => [data, ...prevFeedData]);
 				setFormData({
 					title: "",
 					description: "",
 				});
+				const file = document.getElementById("file-upload");
+				file.value = file.defaultValue;
 			});
 	};
 	return (
@@ -52,6 +73,13 @@ function CreatePost({ setFeedData }) {
 						placeholder="Any Details ?"
 						onChange={handleChange("description")}
 						value={formData.description}
+					/>
+					<input
+						type="file"
+						name="file"
+						id="file-upload"
+						placeholder="Upload an Image"
+						onChange={uploadImage}
 					/>
 					<div className="flex flex-row justify-between mx-16">
 						<div className="attachments flex flex-row items-center">

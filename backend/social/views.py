@@ -13,7 +13,7 @@ from user.models import UserProfile
 
 class PostListCreateView(APIView):
     def get(self,request):
-        post_list=Post.objects.all()
+        post_list=Post.objects.all().order_by('-created_on')
         serializer=PostSerializer(post_list,many=True)
         return Response(data=serializer.data,status=status.HTTP_200_OK)
     
