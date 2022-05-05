@@ -7,21 +7,23 @@ function FollowBlock() {
 
 	const [suggestList, setSuggestList] = useState([]);
 
-	let token = JSON.parse(localStorage.jwt);
+	let token = JSON.parse(localStorage.getItem("jwt"));
 
 	useEffect(() => {
-		fetch(`/user/people-you-may-know/`, {
-			method: "GET",
-			headers: {
-				Authorization: `Bearer ${token}`,
-				Accept: "application/json",
-				"Content-Type": "application/json",
-			},
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				setSuggestList(data);
-			});
+		if (token !== null) {
+			fetch(`/user/people-you-may-know/`, {
+				method: "GET",
+				headers: {
+					Authorization: `Bearer ${token}`,
+					Accept: "application/json",
+					"Content-Type": "application/json",
+				},
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					setSuggestList(data);
+				});
+		}
 	}, []);
 
 	return (

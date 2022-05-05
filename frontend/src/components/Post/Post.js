@@ -25,13 +25,13 @@ function Post({ postData }) {
 
 	const [islikedPost, setIsLikedPost] = useState(false);
 
-	let token = JSON.parse(localStorage.jwt);
+	let token = JSON.parse(localStorage.getItem("jwt"));
 	let postUserInfo = {};
 	if (user !== undefined) {
 		postUserInfo = postData.user;
 	}
 	useEffect(() => {
-		if (post_id !== undefined) {
+		if (post_id !== undefined && token !== null) {
 			fetch(`/posts/${post_id}/comments/`)
 				.then((response) => response.json())
 				.then((data) => setCommentDataSet(data));

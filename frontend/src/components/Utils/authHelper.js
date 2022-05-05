@@ -16,7 +16,7 @@ export const signIn = (user) => {
 export const authenticate = (data, next) => {
 	if (typeof window !== "undefined") {
 		localStorage.setItem("jwt", JSON.stringify(data));
-		console.log("AUTHENTICATION IS DONE");
+		console.log(" Welcome ,You have been Logged In ! ");
 		next();
 	}
 };

@@ -7,36 +7,42 @@ import { useNavigate } from "react-router-dom";
 function Navbar() {
 	const [isUserAutheticated, setUserAuthenticated] = useState(false);
 	const [userData, setUserData] = useState({});
-	let token = JSON.parse(localStorage.jwt);
+	let token = JSON.parse(localStorage.getItem("jwt"));
 
 	const navigate = useNavigate();
 
 	useEffect(() => {
+		if (token === null) {
+			navigate("/login");
+		}
+
 		if (isAuthenticated() === false) {
 			setUserAuthenticated(false);
 		} else {
 			setUserAuthenticated(true);
 		}
 
-		fetch(`/user/current/`, {
-			method: "GET",
-			headers: {
-				Authorization: `Bearer ${token}`,
-				Accept: "application/json",
-				"Content-Type": "application/json",
-			},
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				setUserData(data);
-			});
+		if (token !== null) {
+			fetch(`/user/current/`, {
+				method: "GET",
+				headers: {
+					Authorization: `Bearer ${token}`,
+					Accept: "application/json",
+					"Content-Type": "application/json",
+				},
+			})
+				.then((response) => response.json())
+				.then((data) => {
+					setUserData(data);
+				});
+		}
 	}, []);
 
 	const handleLogout = (event) => {
 		event.preventDefault();
 		signOut();
 		setUserAuthenticated(false);
-		console.log("User has been signed out");
+		console.log("You have been Signed Out ! ");
 		navigate("/login");
 	};
 
