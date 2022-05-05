@@ -74,13 +74,14 @@ function CreatePost({ setFeedData }) {
 						onChange={handleChange("description")}
 						value={formData.description}
 					/>
-					<input
-						type="file"
-						name="file"
-						id="file-upload"
-						placeholder="Upload an Image"
-						onChange={uploadImage}
-					/>
+					<label class="block">
+						<input
+							type="file"
+							class=" ml-10 mt-4 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-cyan-100 file:text-sky-800 hover:file:bg-lime-100"
+							onChange={uploadImage}
+							id="file-upload"
+						/>
+					</label>
 					<div className="flex flex-row justify-between mx-16">
 						<div className="attachments flex flex-row items-center">
 							<AddPhotoAlternateRoundedIcon color="primary" />

@@ -92,12 +92,12 @@ function Post({ postData }) {
 						<img className="rounded-full" src="/./assets/Navatar.png" alt="" />
 					)}
 				</div>
-				<div className="author-detail font-nunito flex flex-col items-start ml-3">
+				<div className="author-detail font-nunito flex flex-col items-start ml-3 mt-5">
 					<div className="author-profile flex flex-row items-center justify-around">
-						<div className="font-semibold text-xs sm:text-base capitalize">
+						<div className="font-semibold text-base sm:text-base capitalize">
 							{postUserInfo.username}
 						</div>
-						<div className="text-xs sm:text-sm ml-4">• Following</div>
+						<div className="text-xs sm:text-xs ml-7">• Following</div>
 					</div>
 					<div className="author-about text-[10px]">{postUserInfo.bio}</div>
 					<div className="post-date-time text-[12px]">• 2 days ago</div>

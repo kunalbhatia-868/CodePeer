@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import MessageIcon from "@mui/icons-material/Message";
 import VideoCallRoundedIcon from "@mui/icons-material/VideoCallRounded";
+import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 
 function People({ followStatus, friendId }) {
 	const [userData, setUserData] = useState({});
@@ -45,6 +46,9 @@ function People({ followStatus, friendId }) {
 						</a>
 						<a href="/" className="mx-1">
 							<VideoCallRoundedIcon sx={{ fontSize: 37 }} />
+						</a>
+						<a href="/" className="mx-1">
+							<ClearRoundedIcon sx={{ fontSize: 37 }} />
 						</a>
 					</div>
 				) : (
