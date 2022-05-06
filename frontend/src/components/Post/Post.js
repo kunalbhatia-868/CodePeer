@@ -15,9 +15,12 @@ function Post({ postData }) {
 		post_id,
 		title,
 		description,
+		// eslint-disable-next-line
 		created_on,
+		// eslint-disable-next-line
 		updated_on,
 		image,
+		// eslint-disable-next-line
 		file,
 	} = postData;
 
@@ -48,6 +51,7 @@ function Post({ postData }) {
 					setIsLikedPost(data.message);
 				});
 		}
+		// eslint-disable-next-line
 	}, []);
 
 	const handleLike = (event) => {

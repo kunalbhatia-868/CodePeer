@@ -16,6 +16,7 @@ function PostDetail() {
 			.then((data) => {
 				setPostData(data);
 			});
+		// eslint-disable-next-line
 	}, []);
 	return (
 		<div>

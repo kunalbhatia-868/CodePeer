@@ -25,6 +25,7 @@ function Sidebar() {
 					setUserData(data);
 				});
 		}
+		// eslint-disable-next-line
 	}, []);
 	const userProfileLink = `profile/${userData.id}`;
 	return (

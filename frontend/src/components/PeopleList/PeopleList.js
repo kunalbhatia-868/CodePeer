@@ -30,6 +30,7 @@ function PeopleList({ followStatus }) {
 				});
 				setFriendsList(newData);
 			});
+		// eslint-disable-next-line
 	}, []);
 
 	return (

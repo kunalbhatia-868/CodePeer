@@ -1,5 +1,4 @@
 import React from "react";
-import Avatar from "@mui/material/Avatar";
 
 function SingleNews({ news }) {
 	const { title, author, source, description, url, image } = news;

@@ -36,6 +36,7 @@ function Navbar() {
 					setUserData(data);
 				});
 		}
+		// eslint-disable-next-line
 	}, []);
 
 	const handleLogout = (event) => {

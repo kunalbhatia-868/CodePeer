@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Avatar from "@mui/material/Avatar";
 
 function Comment({ commentData }) {
+	// eslint-disable-next-line
 	const { id, text, created_on, updated_on, post, user } = commentData;
 	const [commentUserInfo, setCommentUserInfo] = useState({});
 
@@ -9,6 +9,7 @@ function Comment({ commentData }) {
 		fetch(`/user/${user}/`)
 			.then((response) => response.json())
 			.then((data) => setCommentUserInfo(data));
+		// eslint-disable-next-line
 	}, []);
 
 	return (

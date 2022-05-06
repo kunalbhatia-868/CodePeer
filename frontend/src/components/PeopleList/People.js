@@ -21,6 +21,7 @@ function People({ followStatus, friendId }) {
 			.then((data) => {
 				setUserData(data);
 			});
+		// eslint-disable-next-line
 	}, []);
 
 	const userUrl = `profile/${friendId}/`;

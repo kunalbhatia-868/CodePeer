@@ -8,8 +8,6 @@ function CreatePost({ setFeedData }) {
 		description: "",
 	});
 
-	const [loading, setLoading] = useState(false);
-
 	const uploadImage = async (event) => {
 		event.preventDefault();
 		const files = event.target.files;

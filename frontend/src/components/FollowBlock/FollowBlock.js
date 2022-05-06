@@ -24,6 +24,7 @@ function FollowBlock() {
 					setSuggestList(data);
 				});
 		}
+		// eslint-disable-next-line
 	}, []);
 
 	return (

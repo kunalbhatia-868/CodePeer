@@ -72,6 +72,7 @@ function ProfileDetail({ user_id }) {
 			.then((data) => {
 				setFeedData(data);
 			});
+		// eslint-disable-next-line
 	}, []);
 
 	const github_link = "https://github.com/" + userData.github_id;
