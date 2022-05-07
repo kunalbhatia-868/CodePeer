@@ -7,7 +7,7 @@ function PeopleList({ followStatus }) {
 	let token = JSON.parse(localStorage.getItem("jwt"));
 
 	useEffect(() => {
-		fetch("/user/connections/", {
+		fetch(`${process.env.REACT_APP_BACKEND}user/connections/`, {
 			method: "GET",
 			headers: {
 				Authorization: `Bearer ${token}`,

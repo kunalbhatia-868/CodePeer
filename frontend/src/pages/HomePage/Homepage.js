@@ -12,7 +12,7 @@ function Homepage() {
 	const [feedData, setFeedData] = useState([]);
 
 	useEffect(() => {
-		fetch("/posts/")
+		fetch(`${process.env.REACT_APP_BACKEND}posts/`)
 			.then((response) => response.json())
 			.then((data) => {
 				setFeedData(data);

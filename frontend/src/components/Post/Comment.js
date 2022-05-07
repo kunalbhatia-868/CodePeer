@@ -6,7 +6,7 @@ function Comment({ commentData }) {
 	const [commentUserInfo, setCommentUserInfo] = useState({});
 
 	useEffect(() => {
-		fetch(`/user/${user}/`)
+		fetch(`${process.env.REACT_APP_BACKEND}user/${user}/`)
 			.then((response) => response.json())
 			.then((data) => setCommentUserInfo(data));
 		// eslint-disable-next-line

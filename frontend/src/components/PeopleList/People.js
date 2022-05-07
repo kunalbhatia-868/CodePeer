@@ -9,7 +9,7 @@ function People({ followStatus, friendId }) {
 	let token = JSON.parse(localStorage.jwt);
 
 	useEffect(() => {
-		fetch(`/user/${friendId}`, {
+		fetch(`${process.env.REACT_APP_BACKEND}user/${friendId}`, {
 			method: "GET",
 			headers: {
 				Authorization: `Bearer ${token}`,

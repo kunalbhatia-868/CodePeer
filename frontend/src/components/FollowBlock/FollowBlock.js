@@ -11,7 +11,7 @@ function FollowBlock() {
 
 	useEffect(() => {
 		if (token !== null) {
-			fetch(`/user/people-you-may-know/`, {
+			fetch(`${process.env.REACT_APP_BACKEND}user/people-you-may-know/`, {
 				method: "GET",
 				headers: {
 					Authorization: `Bearer ${token}`,

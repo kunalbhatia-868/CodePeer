@@ -12,7 +12,7 @@ function Login() {
 		signIn(values).then((data) => {
 			if (data.access) {
 				authenticate(data.access, () => {
-					navigate("/feed");
+					navigate("/");
 				});
 			} else {
 				alert("Invalid Credentials");

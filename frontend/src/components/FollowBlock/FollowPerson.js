@@ -9,7 +9,7 @@ function FollowPerson({ personData }) {
 	const handleFollow = (event) => {
 		event.preventDefault();
 
-		fetch(`/user/connections/`, {
+		fetch(`${process.env.REACT_APP_BACKEND}user/connections/`, {
 			method: "POST",
 			headers: {
 				Authorization: `Bearer ${token}`,

@@ -23,7 +23,7 @@ function Navbar() {
 		}
 
 		if (token !== null) {
-			fetch(`/user/current/`, {
+			fetch(`${process.env.REACT_APP_BACKEND}user/current/`, {
 				method: "GET",
 				headers: {
 					Authorization: `Bearer ${token}`,
@@ -50,11 +50,11 @@ function Navbar() {
 	const profileLink = `/profile/${userData.id}`;
 	return (
 		<nav className="flex items-center justify-evenly mt-3 2xl:mx-8 mb-4">
-			<a className="navbar-brand" href="/feed">
+			<a className="navbar-brand" href="/">
 				<img src="/./assets/logo.svg" alt="" className="h-12" />
 			</a>
 			<div className="font-nunito xs:text-xs sm:text-sm md:text-lg lg:text-xl text-slate-700 font-semibold">
-				<a className="mx-3 " href="/feed">
+				<a className="mx-3 " href="/">
 					Feed
 				</a>
 				<a className="mx-3 " href="/news">

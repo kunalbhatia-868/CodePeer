@@ -1,5 +1,5 @@
 export const signIn = (user) => {
-	return fetch(`user/token/obtain/`, {
+	return fetch(`${process.env.REACT_APP_BACKEND}user/token/obtain/`, {
 		method: "POST",
 		headers: {
 			Accept: "application/json",

@@ -15,7 +15,7 @@ function ProfileDetail({ user_id }) {
 	const handleFollow = (event) => {
 		event.preventDefault();
 
-		fetch(`/user/connections/`, {
+		fetch(`${process.env.REACT_APP_BACKEND}user/connections/`, {
 			method: "POST",
 			headers: {
 				Authorization: `Bearer ${token}`,
@@ -34,7 +34,7 @@ function ProfileDetail({ user_id }) {
 	};
 
 	useEffect(() => {
-		fetch(`/user/connections/check/${user_id}`, {
+		fetch(`${process.env.REACT_APP_BACKEND}user/connections/check/${user_id}`, {
 			method: "GET",
 			headers: {
 				Authorization: `Bearer ${token}`,
@@ -47,7 +47,7 @@ function ProfileDetail({ user_id }) {
 				setIsFriend(data);
 			});
 
-		fetch(`/user/${user_id}`, {
+		fetch(`${process.env.REACT_APP_BACKEND}user/${user_id}`, {
 			method: "GET",
 			headers: {
 				Authorization: `Bearer ${token}`,
@@ -60,7 +60,7 @@ function ProfileDetail({ user_id }) {
 				setUserData(data);
 			});
 
-		fetch(`/posts/${user_id}`, {
+		fetch(`${process.env.REACT_APP_BACKEND}posts/${user_id}`, {
 			method: "GET",
 			headers: {
 				Authorization: `Bearer ${token}`,

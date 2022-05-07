@@ -12,7 +12,7 @@ function Sidebar() {
 
 	useEffect(() => {
 		if (token !== null) {
-			fetch(`/user/current/`, {
+			fetch(`${process.env.REACT_APP_BACKEND}user/current/`, {
 				method: "GET",
 				headers: {
 					Authorization: `Bearer ${token}`,
@@ -30,7 +30,7 @@ function Sidebar() {
 	const userProfileLink = `profile/${userData.id}`;
 	return (
 		<div>
-			<SidebarLinks text="Feed" Icon={FeedRoundedIcon} link="feed" />
+			<SidebarLinks text="Feed" Icon={FeedRoundedIcon} link="" />
 			<SidebarLinks text="Friends" Icon={PeopleIcon} link="following" />
 			<SidebarLinks
 				text="Profile"

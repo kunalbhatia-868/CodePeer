@@ -11,7 +11,7 @@ function PostDetail() {
 	let { post_id } = useParams();
 	const [postData, setPostData] = useState({});
 	useEffect(() => {
-		fetch(`/posts/${post_id}`)
+		fetch(`${process.env.REACT_APP_BACKEND}posts/${post_id}`)
 			.then((response) => response.json())
 			.then((data) => {
 				setPostData(data);

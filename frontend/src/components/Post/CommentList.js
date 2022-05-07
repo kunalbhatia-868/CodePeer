@@ -17,7 +17,7 @@ function CommentList({
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		let token = JSON.parse(localStorage.jwt);
-		fetch(`posts/${post_id}/comments/`, {
+		fetch(`${process.env.REACT_APP_BACKEND}posts/${post_id}/comments/`, {
 			method: "POST",
 			headers: {
 				Authorization: `Bearer ${token}`,

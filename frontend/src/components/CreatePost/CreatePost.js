@@ -33,7 +33,7 @@ function CreatePost({ setFeedData }) {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		let token = JSON.parse(localStorage.jwt);
-		fetch(`posts/`, {
+		fetch(`${process.env.REACT_APP_BACKEND}posts/`, {
 			method: "POST",
 			headers: {
 				Authorization: `Bearer ${token}`,

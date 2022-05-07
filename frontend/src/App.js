@@ -14,8 +14,8 @@ function App() {
 		<div className="app">
 			<BrowserRouter>
 				<Routes>
-					<Route exact path="/feed" element={<Homepage />} />
-					<Route exact path="/feed/:post_id" element={<PostDetail />} />
+					<Route exact path="/" element={<Homepage />} />
+					<Route exact path="/:post_id" element={<PostDetail />} />
 					<Route exact path="/profile/:user_id" element={<Profile />} />
 					<Route exact path="/following" element={<Peoples />} />
 					<Route exact path="/login" element={<Login />} />

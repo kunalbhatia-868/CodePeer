@@ -24,7 +24,7 @@ function Signup() {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		fetch("/user/signup/", {
+		fetch(`${process.env.REACT_APP_BACKEND}user/signup/`, {
 			method: "POST",
 			headers: {
 				Accept: "application/json",

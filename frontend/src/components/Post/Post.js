@@ -35,11 +35,11 @@ function Post({ postData }) {
 	}
 	useEffect(() => {
 		if (post_id !== undefined && token !== null) {
-			fetch(`/posts/${post_id}/comments/`)
+			fetch(`${process.env.REACT_APP_BACKEND}posts/${post_id}/comments/`)
 				.then((response) => response.json())
 				.then((data) => setCommentDataSet(data));
 
-			fetch(`/posts/${post_id}/is_liked/`, {
+			fetch(`${process.env.REACT_APP_BACKEND}posts/${post_id}/is_liked/`, {
 				headers: {
 					Authorization: `Bearer ${token}`,
 					Accept: "application/json",
@@ -57,7 +57,7 @@ function Post({ postData }) {
 	const handleLike = (event) => {
 		event.preventDefault();
 		let token = JSON.parse(localStorage.jwt);
-		fetch(`/posts/${post_id}/like/`, {
+		fetch(`${process.env.REACT_APP_BACKEND}posts/${post_id}/like/`, {
 			method: "POST",
 			headers: {
 				Authorization: `Bearer ${token}`,
@@ -78,7 +78,7 @@ function Post({ postData }) {
 	};
 
 	const postUserUrl = `/profile/${user.id}`;
-	const postDetailUrl = `/feed/${post_id}`;
+	const postDetailUrl = `/${post_id}`;
 	return (
 		<div className="border-b-2 py-5 px-10 border-2 rounded-lg mx-4 my-5">
 			<a
