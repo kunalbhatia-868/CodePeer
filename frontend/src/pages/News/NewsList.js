@@ -6,7 +6,7 @@ function NewsList() {
 
 	useEffect(() => {
 		fetch(
-			"https://api.mediastack.com/v1/news?access_key=266ba54bc89e2e55d65d504462eb9313&keywords=coding&countries=in,us"
+			"http://api.mediastack.com/v1/news?access_key=266ba54bc89e2e55d65d504462eb9313&keywords=coding&countries=in,us"
 		)
 			.then((response) => response.json())
 			.then((data) => setNewsData(data.data));
