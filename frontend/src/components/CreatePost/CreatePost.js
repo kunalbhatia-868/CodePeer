@@ -82,8 +82,6 @@ function CreatePost({ setFeedData }) {
 					</label>
 					<div className="flex flex-row justify-between mx-16">
 						<div className="attachments flex flex-row items-center">
-							<AddPhotoAlternateRoundedIcon color="primary" />
-							<AttachFileIcon color="primary" />
 						</div>
 						<button
 							type="button"
