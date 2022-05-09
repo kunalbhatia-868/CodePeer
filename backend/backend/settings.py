@@ -167,7 +167,7 @@ SIMPLE_JWT = {
 }
 
 CORS_ORIGIN_WHITELIST = [
-    'https://code-peer.vercel.app/',
+    'https://code-peer.vercel.app',
     'http://localhost:3000'
 ]
 
